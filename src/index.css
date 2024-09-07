@@ -5,8 +5,8 @@
 @tailwind utilities;
 
 *{
-  
   font-family: "Space Mono", monospace;
+  @apply transition-colors duration-1000;
 }
 
 

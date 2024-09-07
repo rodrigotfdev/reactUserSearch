@@ -5,25 +5,41 @@ import { RiUserSearchFill } from "react-icons/ri";
 
 export default function App() {
   const [userQuery, setUserQuery] = useState("rodrigotfdev");
+  const [isDark, setIsDark] = useState(false);
+
+  const toggleDarkMode = () => {
+    setIsDark(!isDark);
+  };
 
   return (
-    <div className="app bg-lightBgColor h-screen flex flex-col items-center">
-      <TopMenu />
-      <UserSearch userQuery={userQuery} setUserQuery={setUserQuery} />
-      <Results userQuery={userQuery} />
-    
+    <div className={`${isDark && "dark"}`}>
+      <div className="app bg-lightBgColor h-screen flex flex-col items-center dark:bg-darkBg">
+        <TopMenu
+          toggleDarkMode={toggleDarkMode}
+          isDark={isDark}
+          setIsDark={setIsDark}
+        />
+        <UserSearch userQuery={userQuery} setUserQuery={setUserQuery} />
+        <Results userQuery={userQuery} />
+      </div>
     </div>
   );
 }
 
-function TopMenu() {
+function TopMenu({ isDark, setIsDark, toggleDarkMode }) {
   return (
-    <div className="top-menu flex w-full lg:w-[730px] mt-6 h-10 justify-between  px-6">
+    <div className="top-menu flex w-full lg:w-[730px] mt-6 h-10 justify-between  px-6 dark:text-white">
       <h1>devfinder</h1>
       <div className="flex  w-[78px] justify-between items-center">
-        <span className="btn-dark  text-sm uppercase">Dark </span>
-        <button className="btn-dark">
-          <img src="/img/icon-moon.svg" alt="" className="w-8 h-8" />
+        <span className="btn-dark  text-sm uppercase">
+          {isDark ? "Light" : "Dark"}
+        </span>
+        <button className="btn-dark" onClick={toggleDarkMode}>
+          {isDark ? (
+            <img src="/img/icon-sun.svg" alt="" />
+          ) : (
+            <img src="/img/icon-moon.svg" alt="" />
+          )}
         </button>
       </div>
     </div>
@@ -38,14 +54,14 @@ function UserSearch({ userQuery, setUserQuery }) {
   };
 
   return (
-    <div className="flex items-center justify-around w-[89%] mt-6 rounded-lg bg-white h-[46px] lg:w-[730px]">
+    <div className="flex items-center justify-around w-[89%] mt-6 rounded-lg bg-white h-[46px] lg:w-[730px] dark:bg-darkBoxes">
       <RiUserSearchFill className="text-btnColor w-1/6" />
       <input
         type="search"
         name=""
         id=""
         placeholder="Search GitHub username..."
-        className="w-4/6 h-full"
+        className="w-4/6 h-full dark:bg-darkBoxes"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
@@ -69,7 +85,7 @@ function Results({ userQuery }) {
 
     if (!userQuery) return;
 
-    setLoading(true)
+    setLoading(true);
     setError(null);
 
     axios
@@ -101,7 +117,7 @@ function Results({ userQuery }) {
   const formattedDate = new Date(userData.created_at).toLocaleDateString();
 
   return (
-    <div className="user-results flex flex-col mt-[16px] px-6 mx-6 mb-16 rounded-lg bg-white  lg:w-[730px]">
+    <div className="user-results flex flex-col mt-[16px] px-6 mx-6 mb-16 rounded-lg bg-white dark:bg-darkBoxes dark:text-white lg:w-[730px]">
       <div className="user-top-info flex   items-center w-full  justify-around mt-[32px] ">
         <div className="user-img w-[70px] h-[70px]">
           <img src={userData.avatar_url} alt="" className="rounded-full" />
@@ -119,7 +135,7 @@ function Results({ userQuery }) {
           qui repellat!
         </p>
       </div>
-      <div className="repo-stats-info flex justify-between rounded-lg items-center h-24 mt-[33px] bg-lightBgColor">
+      <div className="repo-stats-info flex justify-between rounded-lg items-center h-24 mt-[33px] bg-lightBgColor dark:bg-darkBg">
         <div className="stats-left flex flex-col text-center w-2/6">
           <span>Repos</span> {userData.public_repos}
         </div>
@@ -158,4 +174,3 @@ function Results({ userQuery }) {
     </div>
   );
 }
-
