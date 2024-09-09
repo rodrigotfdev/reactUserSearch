@@ -1,7 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-
 import TopMenu from "./components/TopMenu";
 import UserSearch from "./components/UserSearch";
 import Results from "./components/Results";
@@ -28,8 +27,3 @@ export default function App() {
     </div>
   );
 }
-
-
-
-
-
