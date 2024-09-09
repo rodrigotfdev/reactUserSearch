@@ -53,9 +53,7 @@ or clone the repository to your computer and run 'npm install' and 'npm run dev'
 
 ## Project Images
 
-![image](https://github.com/user-attachments/assets/ef363c89-9ef1-4d0b-8ec0-8ef902d2e776)
-
-![image](https://github.com/user-attachments/assets/0023b39b-0af6-4207-bcae-c80f9ea06125)
+![image](https://github.com/user-attachments/assets/ef363c89-9ef1-4d0b-8ec0-8ef902d2e776) [image](https://github.com/user-attachments/assets/0023b39b-0af6-4207-bcae-c80f9ea06125)
 
 
 ![image](https://github.com/user-attachments/assets/0407c3c5-968a-44de-8207-08c3b45078a3)
